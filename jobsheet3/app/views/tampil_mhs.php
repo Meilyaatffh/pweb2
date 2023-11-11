@@ -1,0 +1,86 @@
+<?php
+//memanggil class database
+include '../classes/database.php';
+//instansiasi class database
+$db=new database;
+?>
+
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SIAKAD</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    </head>
+
+    <div class = "px-3 py-3">
+    <nav class="navbar navbar-expand-lg bg-body-secondary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">SIAKAD</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="tampil_mhs.php">Mahasiswa</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="tampil_dosen.php">Dosen</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+    
+<div class = "px-5">
+<h3>Data Mahasiswa</h3>
+<a class="btn btn-primary mb-3 mt-2" href="input_mhs.php">Tambah Mahasiswa</a>
+<?php 
+if(isset($_GET['success']) && $_GET['success'] == "tambah"){
+  echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+    Data Mahasiswa Berhasil Ditambahkan!
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>';
+}
+elseif(isset($_GET['success']) && $_GET['success'] == "update"){
+  echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+    Data Mahasiswa Berhasil Diedit!
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>';
+}
+elseif(isset($_GET['success']) && $_GET['success'] == "hapus"){
+  echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    Data Mahasiswa Berhasil Dihapus!
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>';
+}
+?>
+<table class="table table-striped" style="width:70%">
+<tr>
+    <th>No</th>
+    <th>NIM</th>
+    <th>Nama</th>
+    <th>Alamat</th>
+    <th>Aksi</th>
+</tr>
+<?php
+$no=1;
+foreach($db->tampil_mahasiswa() as $x)
+{
+    ?>
+    <tr>
+        <td><?php echo$no++ ?></td>
+        <td><?php echo$x ['nim'] ?></td>
+        <td><?php echo$x ['nama'] ?></td>
+        <td><?php echo$x ['alamat'] ?></td>
+        <td>
+            <a class="btn btn-warning" href="edit_mhs.php?id=<?php echo $x['id']; ?>&aksi=edit">Edit</a>
+            <a class="btn btn-danger" href="proses_mhs.php?id=<?php echo $x['id']; ?>&aksi=hapus">Hapus</a>
+        </td>
+    </tr>
+    <?php
+}
+?>
+</table>
+</div>
+</div>
