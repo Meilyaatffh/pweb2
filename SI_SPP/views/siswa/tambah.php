@@ -29,7 +29,7 @@ require '../../index2.php';
                 <tr>
                     <td>Alamat</td>
                     <td>
-                        <textarea name="alamat" cols="30" rows="5"></textarea>
+                        <textarea name="alamat" class="form-control" cols="30" rows="5"></textarea>
                     </td>
                 </tr>
                 <td>

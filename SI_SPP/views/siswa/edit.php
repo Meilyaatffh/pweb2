@@ -10,55 +10,67 @@ if (isset($_GET['id_siswa'])) {
     $id_siswa = $_GET['id_siswa'];
 
     $siswaController = new SiswaController($db);
-    $siswaData = $siswaController->getSiswaById($id_siswa);
+    $x = $siswaController->getSiswaById($id_siswa);
 
-    if ($siswaData) {
+    if ($x) {
         if (isset($_POST['submit'])) {
             $nis = $_POST['nis'];
-            $nama_siswa = $_POST['hak_akses'];
-            $password = $_POST['password'];
+            $nama_siswa = $_POST['nama_siswa'];
+            $nama_jurusan = $_POST['nama_jurusan'];
+            $jenis_kelamin = $_POST['jenis_kelamin'];
+            $alamat = $_POST['alamat'];
 
-            $result = $penggunaController->updatePengguna($id_pengguna, $nama_pengguna, $hak_akses, $password);
+            $result = $siswaController->updateSiswa($id_siswa, $nis, $nama_siswa, $nama_jurusan, $jenis_kelamin, $alamat);
 
             if ($result) {
-                header("location:pengguna");
+                header("location:siswa");
             } else {
-                header("location:editPengguna");
+                header("location:editSiswa");
             }
         }
     } else {
-        echo "Pengguna Tidak Ditemukan!";
+        echo "Siswa Tidak Ditemukan!";
     }
 }
 ?>
 
 <body>
     <div class="card px-3 py-3" style="margin: 119px auto; padding: 20px; max-width:400px">
-        <h3 class="text-center">Edit Data Pengguna</h3>
+        <h3 class="text-center">Edit Data Siswa</h3>
         <?php
-        // if ($busData) {
         ?>
         <form method="post" action="">
             <?php
-            foreach ($penggunaData as $x) {
             ?>
                 <table>
                     <tr>
-                        <td>Nama Pengguna</td>
+                        <td>NIS</td>
                         <td>
-                            <input type="text" name="nama_pengguna" value="<?php echo $x['nama_pengguna'] ?>" class="form-control">
+                            <input type="text" name="nis" value="<?php echo $x['nis'] ?>" class="form-control">
                         </td>
                     </tr>
                     <tr>
-                        <td>Hak Akses</td>
+                        <td>Nama</td>
                         <td>
-                            <input type="text" name="hak_akses" value="<?php echo $x['hak_akses'] ?>" class="form-control">
+                            <input type="text" name="nama_siswa" value="<?php echo $x['nama_siswa'] ?>" class="form-control">
                         </td>
                     </tr>
                     <tr>
-                        <td>Password</td>
+                        <td>Jurusan</td>
                         <td>
-                            <input type="text" name="password" value="<?php echo $x['password'] ?>" class="form-control">
+                            <input type="text" name="nama_jurusan" value="<?php echo $x['nama_jurusan'] ?>" class="form-control">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Jenis Kelamin</td>
+                        <td>
+                            <input type="text" name="jenis_kelamin" value="<?php echo $x['jenis_kelamin'] ?>" class="form-control">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Alamat</td>
+                        <td>
+                            <input type="text" name="alamat" value="<?php echo $x['alamat'] ?>" class="form-control">
                         </td>
                     </tr>
                     <tr>
@@ -68,12 +80,11 @@ if (isset($_GET['id_siswa'])) {
                         </td>
                     </tr>
                 <?php
-            }
                 ?>
                 </table>
         </form>
         <?php
-        // }
+        
         ?>
     </div>
 

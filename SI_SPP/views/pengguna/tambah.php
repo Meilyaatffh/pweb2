@@ -13,12 +13,12 @@ require '../../index2.php';
             <table>
                 <tr>
                     <td>Nama</td>
-                    <td><input type="text" name="nama_pengguna"></td>
+                    <td><input type="text" name="nama_pengguna" class="form-control"></td>
                 </tr>
                 <tr>
                     <td>Hak Akses</td>
                     <td>
-                        <select name="hak_akses">
+                        <select name="hak_akses" class="form-control">
                             <optgroup label="Pilih Hak Akses">
 
                                 <option value="Admin">Admin</option>
@@ -29,7 +29,7 @@ require '../../index2.php';
                 </tr>
                 <tr>
                     <td>Password</td>
-                    <td><input type="text" name="password"></td>
+                    <td><input type="text" name="password" class="form-control"></td>
                 </tr>
 
                 <td>
