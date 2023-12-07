@@ -35,27 +35,8 @@ $db=new database;
 <div class = "px-5">
 <h3>Data Mahasiswa</h3>
 <a class="btn btn-primary mb-3 mt-2" href="input_mhs.php">Tambah Mahasiswa</a>
-<?php 
-if(isset($_GET['success']) && $_GET['success'] == "tambah"){
-  echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-    Data Mahasiswa Berhasil Ditambahkan!
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>';
-}
-elseif(isset($_GET['success']) && $_GET['success'] == "update"){
-  echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-    Data Mahasiswa Berhasil Diedit!
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>';
-}
-elseif(isset($_GET['success']) && $_GET['success'] == "hapus"){
-  echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-    Data Mahasiswa Berhasil Dihapus!
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>';
-}
-?>
-<table class="table table-striped" style="width:70%">
+<br>
+<table class="table table-striped" style="width:100%">
 <tr>
     <th>No</th>
     <th>NIM</th>
